@@ -40,9 +40,9 @@ public class SVGChartTest {
 		List<Item> items = chart.getItemList();
 
 		// Put some Items into the list
-		for (int i = 1; i <= 10; i++) {
+		for (int i = 1; i <= 30; i++) {
 			Item item = new Item("Employee " + i);
-			if (i == 5) {
+			if (i % 2 == 0) {
 				item.setHighlighted(true);
 			}
 			items.add(item);
@@ -63,6 +63,7 @@ public class SVGChartTest {
 
 		chart.getRange(0).setUnit("year");
 		chart.getRange(0).setName("Age");
+		chart.getRange(0).setGridlineCount(10);
 
 		// Fetch an empty list of Items
 		List<Item> items = chart.getItemList();
@@ -91,9 +92,11 @@ public class SVGChartTest {
 
 		chart.getRange(0).setUnit("km");
 		chart.getRange(0).setName("Milage");
+		chart.getRange(0).setGridlineCount(3);
 		
 		chart.getRange(1).setUnit("year");
 		chart.getRange(1).setName("Age");
+		chart.getRange(1).setGridlineCount(10);
 
 		// Fetch an empty list of Items
 		List<Item> items = chart.getItemList();
@@ -125,12 +128,15 @@ public class SVGChartTest {
 
 		chart.getRange(0).setUnit("year");
 		chart.getRange(0).setName("Age");
+		chart.getRange(0).setGridlineCount(10);
 		
 		chart.getRange(1).setUnit("year");
 		chart.getRange(1).setName("Experience");
+		chart.getRange(1).setGridlineCount(10);
 		
 		chart.getRange(2).setUnit("kr");
 		chart.getRange(2).setName("Salary");
+		//chart.getRange(0).setGridlineCount(10);
 
 		// Fetch an empty list of Items
 		List<Item> items = chart.getItemList();
