@@ -92,24 +92,24 @@ public class SVGChartTest {
 
 		chart.getRange(0).setUnit("km");
 		chart.getRange(0).setName("Milage");
-		chart.getRange(0).setGridlineCount(3);
+		chart.getRange(0).setGridlineCount(10);
 		
 		chart.getRange(1).setUnit("year");
 		chart.getRange(1).setName("Age");
-		chart.getRange(1).setGridlineCount(10);
+		chart.getRange(1).setGridlineCount(3);
 
 		// Fetch an empty list of Items
 		List<Item> items = chart.getItemList();
 
 		// Put some Items into the list
-		for (int i = 1; i <= 5; i++) {
+		for (int i = 1; i <= 10; i++) {
 			Item item = new Item("Car " + i);
-			if (i == 1) {
+			if (i % 3 == 0) {
 				item.setHighlighted(true);
 			}
 			items.add(item);
 
-			for (int j = 0; j < 3; j++) {
+			for (int j = 1; j <= 3; j++) {
 				Value value = new Value(chart.getDimensionCount());
 				value.set(0, random.nextDouble() * j * 200000); // Milage
 				value.set(1, j * 10); // Age
