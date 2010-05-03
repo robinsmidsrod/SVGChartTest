@@ -71,7 +71,7 @@ public class SVGChartTest {
 		// Put some Items into the list
 		for (int i = 1; i <= 20; i++) {
 			Item item = new Item("Employee " + i);
-			if (i == 2) {
+			if (i % 3 == 0) {
 				item.setHighlighted(true);
 			}
 			items.add(item);
