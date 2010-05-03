@@ -63,7 +63,8 @@ public class SVGChartTest {
 
 		chart.getRange(0).setUnit("year");
 		chart.getRange(0).setName("Age");
-		chart.getRange(0).setGridlineCount(10);
+		chart.getRange(0).setGridlineCount(9);
+		chart.getRange(0).setMax(75);
 
 		// Fetch an empty list of Items
 		List<Item> items = chart.getItemList();
@@ -97,6 +98,8 @@ public class SVGChartTest {
 		chart.getRange(1).setUnit("year");
 		chart.getRange(1).setName("Age");
 		chart.getRange(1).setGridlineCount(2);
+		chart.getRange(1).setMin(5);
+		chart.getRange(1).setMax(35);
 
 		// Fetch an empty list of Items
 		List<Item> items = chart.getItemList();
@@ -128,11 +131,14 @@ public class SVGChartTest {
 
 		chart.getRange(0).setUnit("year");
 		chart.getRange(0).setName("Age");
-		chart.getRange(0).setGridlineCount(10);
+		chart.getRange(0).setGridlineCount(4);
+		chart.getRange(0).setMin(20);
+		chart.getRange(0).setMax(60);
 		
 		chart.getRange(1).setUnit("year");
 		chart.getRange(1).setName("Experience");
-		chart.getRange(1).setGridlineCount(10);
+		chart.getRange(1).setGridlineCount(7);
+		chart.getRange(1).setMax(8);
 		
 		chart.getRange(2).setUnit("kr");
 		chart.getRange(2).setName("Salary");
@@ -142,14 +148,14 @@ public class SVGChartTest {
 		List<Item> items = chart.getItemList();
 
 		// Put some Items into the list
-		for (int i = 1; i <= 5; i++) {
+		for (int i = 1; i <= 10; i++) {
 			Item item = new Item("Person " + i);
-			if (i == 1) {
+			if (i % 2 == 0) {
 				item.setHighlighted(true);
 			}
 			items.add(item);
 
-			for (int j = 0; j < 3; j++) {
+			for (int j = 1; j <= 3; j++) {
 				Value value = new Value(chart.getDimensionCount());
 				value.set(0, j * 10 + 20); // Age
 				value.set(1, j + random.nextDouble() * 5); // Experience
