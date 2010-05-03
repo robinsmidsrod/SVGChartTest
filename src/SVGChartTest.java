@@ -96,15 +96,15 @@ public class SVGChartTest {
 		
 		chart.getRange(1).setUnit("year");
 		chart.getRange(1).setName("Age");
-		chart.getRange(1).setGridlineCount(3);
+		chart.getRange(1).setGridlineCount(2);
 
 		// Fetch an empty list of Items
 		List<Item> items = chart.getItemList();
 
 		// Put some Items into the list
-		for (int i = 1; i <= 10; i++) {
+		for (int i = 1; i <= 5; i++) {
 			Item item = new Item("Car " + i);
-			if (i % 3 == 0) {
+			if (i % 2 == 0) {
 				item.setHighlighted(true);
 			}
 			items.add(item);
