@@ -1,4 +1,3 @@
-import java.awt.Color;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.List;
@@ -107,8 +106,6 @@ public class SVGChartTest {
 		};
 		for(int i=0; i < companies.length; i++) {
 			Item item = new Item(companies[i]);
-			int colorValue = random.nextInt((int)Math.pow(2, 24));
-			item.setColor(new Color(colorValue));
 			if ( i == 1 || i == 6 ) {
 				item.setHighlighted(true);
 			}
