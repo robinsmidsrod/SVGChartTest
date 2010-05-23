@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.List;
@@ -22,6 +23,7 @@ public class SVGChartTest {
 	 */
 	public static void main(String[] args) throws FileNotFoundException {
 		createSectorChart("C:\\Temp\\sector_chart.svg");
+		createEmailChart("C:\\Temp\\epost-aktivitet.svg");
 		createBarChart("C:\\Temp\\bar_chart.svg");
 		createLineChart("C:\\Temp\\line_chart.svg");
 		createScatterChart("C:\\Temp\\scatter_chart.svg");
@@ -48,7 +50,71 @@ public class SVGChartTest {
 			items.add(item);
 
 			Value value = new Value(chart.getDimensionCount());
-			value.set(0,random.nextDouble() * 300000 + 200000); // Salary
+			value.set(0, random.nextDouble() * 300000 + 200000); // Salary
+			item.getValueList().add(value);
+		}
+
+		renderChartToFile(chart, filename);
+	}
+
+	private static void createEmailChart(String filename)
+			throws FileNotFoundException {
+		// Create new sector chart
+		BarChart chart = new BarChart("Aktivitet på SVG WG+IG epostliste",
+				"Aktivitet for SVG WG medlemmer på SVG WG+IG epostliste siden 2008");
+
+		chart.getRange(0).setUnit("stk");
+		chart.getRange(0).setName("meldinger");
+
+		// Fetch an empty list of Items
+		List<Item> items = chart.getItemList();
+
+		String[] companies = {
+				"W3C",
+				"Opera",
+				"Canon",
+				"Institut Telecom",
+				"Ikivo",
+				"Mozilla",
+				"Apple",
+				"Quickoffice",
+				"Adobe",
+				"Microsoft",
+				"Samsung",
+				"Telecom Italia SpA",
+				"Rochester Institute of Technology",
+				"PTC-Arbortext",
+				"Ericsson",
+				"Cisco",
+		};
+		double[] messages = {
+				1089,
+				253,
+				158,
+				42,
+				22,
+				19,
+				19,
+				18,
+				11,
+				3,
+				1,
+				0,
+				0,
+				0,
+				0,
+				0,
+		};
+		for(int i=0; i < companies.length; i++) {
+			Item item = new Item(companies[i]);
+			int colorValue = random.nextInt((int)Math.pow(2, 24));
+			item.setColor(new Color(colorValue));
+			if ( i == 1 || i == 6 ) {
+				item.setHighlighted(true);
+			}
+			items.add(item);
+			Value value = new Value(chart.getDimensionCount());
+			value.set(0, messages[i]);
 			item.getValueList().add(value);
 		}
 
@@ -78,7 +144,7 @@ public class SVGChartTest {
 			items.add(item);
 
 			Value value = new Value(chart.getDimensionCount());
-			value.set(0,random.nextDouble() * 50 + 20); // Age
+			value.set(0, random.nextDouble() * 50 + 20); // Age
 			item.getValueList().add(value);
 		}
 
@@ -94,7 +160,7 @@ public class SVGChartTest {
 		chart.getRange(0).setUnit("km");
 		chart.getRange(0).setName("Milage");
 		chart.getRange(0).setGridlineCount(10);
-		
+
 		chart.getRange(1).setUnit("year");
 		chart.getRange(1).setName("Age");
 		chart.getRange(1).setGridlineCount(2);
@@ -126,7 +192,8 @@ public class SVGChartTest {
 	private static void createScatterChart(String filename)
 			throws FileNotFoundException {
 		// Create new sector chart
-		ScatterChart chart = new ScatterChart("Income by age/experience",
+		ScatterChart chart = new ScatterChart(
+				"Income by age/experience",
 				"An overview over people and their income across their life with different jobs");
 
 		chart.getRange(0).setUnit("year");
@@ -134,15 +201,15 @@ public class SVGChartTest {
 		chart.getRange(0).setGridlineCount(4);
 		chart.getRange(0).setMin(20);
 		chart.getRange(0).setMax(60);
-		
+
 		chart.getRange(1).setUnit("year");
 		chart.getRange(1).setName("Experience");
 		chart.getRange(1).setGridlineCount(7);
 		chart.getRange(1).setMax(8);
-		
+
 		chart.getRange(2).setUnit("kr");
 		chart.getRange(2).setName("Salary");
-		//chart.getRange(0).setGridlineCount(10);
+		// chart.getRange(0).setGridlineCount(10);
 
 		// Fetch an empty list of Items
 		List<Item> items = chart.getItemList();
@@ -173,5 +240,7 @@ public class SVGChartTest {
 		SVGRenderer r = chart.getSVGRenderer();
 		r.setPrettyPrint(true);
 		r.storeSVGDocument(new File(filename));
+		// Output to screen
+		// System.out.print(r.getSVGDocument());
 	}
 }
