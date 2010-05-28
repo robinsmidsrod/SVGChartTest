@@ -7,10 +7,10 @@ import no.smidsrod.robin.svg.library.BarChart;
 import no.smidsrod.robin.svg.library.Chart;
 import no.smidsrod.robin.svg.library.Item;
 import no.smidsrod.robin.svg.library.LineChart;
-import no.smidsrod.robin.svg.library.SVGRenderer;
 import no.smidsrod.robin.svg.library.ScatterChart;
 import no.smidsrod.robin.svg.library.SectorChart;
 import no.smidsrod.robin.svg.library.Value;
+import no.smidsrod.robin.svg.library.renderer.SVGRenderer;
 
 public class SVGChartTest {
 
